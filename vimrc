@@ -39,6 +39,8 @@ Plugin 'kien/rainbow_parentheses.vim'       " Rainbow Parentheses
 Plugin 'ryanoasis/vim-devicons'             " Dev Icons
 Plugin 'mhinz/vim-startify'                 " Vim Start Page
 Plugin 'ludovicchabant/vim-gutentags'
+Plugin 'vim-scripts/ZoomWin'
+
 "-------------------=== Snippets support ===--------------------
 Plugin 'garbas/vim-snipmate'                " Snippets manager
 Plugin 'MarcWeber/vim-addon-mw-utils'       " dependencies #1
@@ -276,7 +278,7 @@ set listchars=tab:›\ ,trail:•,extends:#,nbsp:.
 "=====================================================
 
 " python executables for different plugins
-let g:pymode_python='python'
+let g:pymode_python='python3'
 " let g:pymode_options_max_line_length = 119
 " let g:pymode_options_colorcolumn = 0
 
@@ -289,13 +291,14 @@ let g:pymode_rope_lookup_project = 0
 let g:airline#extensions#tabline#enabled = 1
 
 " rope
-let g:pymode_rope=0
+let g:pymode_rope=1
 let g:pymode_rope_completion=0
 let g:pymode_rope_complete_on_dot=0
 let g:pymode_rope_auto_project=0
 let g:pymode_rope_enable_autoimport=0
 let g:pymode_rope_autoimport_generate=0
 let g:pymode_rope_guess_project=0
+let g:pymode_rope_rename_bind = '<leader>r'
 
 " documentation
 let g:pymode_doc=0
@@ -306,6 +309,7 @@ let g:pymode_lint=0
 
 " virtualenv
 let g:pymode_virtualenv=1
+let g:pymode_virtualenv_path='/home/nick/miniconda/bin/python'
 
 " breakpoints
 let g:pymode_breakpoint=1
@@ -375,6 +379,4 @@ imap <F5> <Esc>:w<CR>:!clear;python %<CR>
 "vno <up> <Nop>
 
 
-autocmd StdinReadPre * let g:isReadingFromStdin = 1
-autocmd VimEnter * nested if !argc() && !exists('g:isReadingFromStdin') | Startify | endif
-autocmd VimEnter * nested if !argc() && !exists('g:isReadingFromStdin') | NERDTree | endif
+
