@@ -28,6 +28,7 @@ Plugin 'MattesGroeger/vim-bookmarks'        " Bookmarks
 Plugin 'thaerkh/vim-indentguides'           " Visual representation of indents
 Plugin 'w0rp/ale'                           " Async Lint Engine
 Plugin 'Valloric/YouCompleteMe'             " Code Completion
+" Plugin 'kien/ctrl.vim'
 
 "-------------------=== Other ===-------------------------------
 Plugin 'tpope/vim-surround'                 " Parentheses, brackets, quotes, XML tags, and more
@@ -37,6 +38,7 @@ Plugin 'jreybert/vimagit'                   " Git Operations
 Plugin 'kien/rainbow_parentheses.vim'       " Rainbow Parentheses
 Plugin 'ryanoasis/vim-devicons'             " Dev Icons
 Plugin 'mhinz/vim-startify'                 " Vim Start Page
+Plugin 'ludovicchabant/vim-gutentags'
 "-------------------=== Snippets support ===--------------------
 Plugin 'garbas/vim-snipmate'                " Snippets manager
 Plugin 'MarcWeber/vim-addon-mw-utils'       " dependencies #1
@@ -53,6 +55,7 @@ Plugin 'hynek/vim-python-pep8-indent'
 Plugin 'mitsuhiko/vim-python-combined'
 Plugin 'mitsuhiko/vim-jinja'
 Plugin 'jmcantrell/vim-virtualenv'
+" Plugin 'cjrh/vim-conda'
 
 " All of your Plugins must be added before the following line
 call vundle#end()                           " required
@@ -75,7 +78,7 @@ syntax enable                               " enable syntax highlighting
 
 set pyxversion=0
 let g:loaded_python_provider = 1
-set shell=/bin/bash
+" set shell=/bin/bash
 set number                                  " show line numbers
 set ruler
 set ttyfast                                 " terminal acceleration
@@ -110,6 +113,7 @@ set secure                                  " prohibit .vimrc files to execute s
 tab sball
 set switchbuf=useopen
 set laststatus=2
+set splitbelow
 nmap <F9> :bprev<CR>
 nmap <F10> :bnext<CR>
 nmap <silent> <leader>q :SyntasticCheck # <CR> :bp <BAR> bd #<CR>
@@ -164,7 +168,7 @@ let g:airline_powerline_fonts=1
 let g:tagbar_autofocus=0
 let g:tagbar_width=42
 autocmd BufEnter *.py :call tagbar#autoopen(0)
-autocmd BufWinLeave *.py :TagbarClose
+"autocmd BufWinLeave *.py :TagbarClose
 
 "=====================================================
 "" NERDTree settings
@@ -272,7 +276,8 @@ set listchars=tab:›\ ,trail:•,extends:#,nbsp:.
 
 " python executables for different plugins
 let g:pymode_python='python'
-
+" let g:pymode_options_max_line_length = 119
+" let g:pymode_options_colorcolumn = 0
 
 nmap <leader>g :YcmCompleter GoTo<CR>
 nmap <leader>d :YcmCompleter GoToDefinition<CR>
@@ -304,6 +309,7 @@ let g:pymode_virtualenv=1
 " breakpoints
 let g:pymode_breakpoint=1
 let g:pymode_breakpoint_key='<leader>b'
+let g:pymode_breakpoint_cmd='breakpoint()'
 
 " syntax highlight
 let g:pymode_syntax=1
@@ -331,7 +337,7 @@ augroup vimrc_autocmds
     autocmd FileType python,rst,c,cpp highlight Excess ctermbg=DarkGrey guibg=Black
     autocmd FileType python,rst,c,cpp match Excess /\%81v.*/
     autocmd FileType python,rst,c,cpp set nowrap
-    autocmd FileType python,rst,c,cpp set colorcolumn=80
+    autocmd FileType python,rst,c,cpp set colorcolumn=120
 augroup END
 
 " code folding
@@ -352,20 +358,20 @@ let g:airline#extensions#tabline#enabled = 1
 
 imap <F5> <Esc>:w<CR>:!clear;python %<CR>
 
-no <down> <Nop>
-no <left> <Nop>
-no <right> <Nop>
-no <up> <Nop>
+"no <down> <Nop>
+"no <left> <Nop>
+"no <right> <Nop>
+"no <up> <Nop>
 
-ino <down> <Nop>
-ino <left> <Nop>
-ino <right> <Nop>
-ino <up> <Nop>
+"ino <down> <Nop>
+"ino <left> <Nop>
+"ino <right> <Nop>
+"ino <up> <Nop>
 
-vno <down> <Nop>
-vno <left> <Nop>
-vno <right> <Nop>
-vno <up> <Nop>
+"vno <down> <Nop>
+"vno <left> <Nop>
+"vno <right> <Nop>
+"vno <up> <Nop>
 
 
 autocmd StdinReadPre * let g:isReadingFromStdin = 1
