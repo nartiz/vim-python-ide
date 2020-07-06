@@ -19,7 +19,9 @@ Plugin 'scrooloose/nerdtree'                " Project and file navigation
 Plugin 'Xuyuanp/nerdtree-git-plugin'        " NerdTree git functionality
 Plugin 'majutsushi/tagbar'                  " Class/module browser
 Plugin 'vim-ctrlspace/vim-ctrlspace'        " Tabs/Buffers/Fuzzy/Workspaces/Bookmarks
-Plugin 'mileszs/ack.vim'                    " Ag/Grep
+"Plugin 'mileszs/ack.vim'                    " Ag/Grep
+Plugin 'junegunn/fzf'
+Plugin 'junegunn/fzf.vim'
 Plugin 'vim-airline/vim-airline'            " Lean & mean status/tabline for vim
 Plugin 'vim-airline/vim-airline-themes'     " Themes for airline
 Plugin 'fisadev/FixedTaskList.vim'          " Pending tasks list
@@ -145,6 +147,22 @@ nnoremap <F4> :set relativenumber!<CR>
 "=====================================================
 set incsearch	                            " incremental search
 set hlsearch	                            " highlight search results
+
+"=====================================================
+"" FZF settings
+" https://jesseleite.com/posts/2/its-dangerous-to-vim-alone-take-fzf
+"=====================================================
+nmap <Leader>f :GFiles<CR>
+nmap <Leader>F :Files<CR>
+nmap <Leader>b :Buffers<CR>
+nmap <Leader>h :History<CR>
+nmap <Leader>t :BTags<CR>
+nmap <Leader>T :Tags<CR>
+nmap <Leader>/ :Rg<Space>
+nmap <Leader>H :Helptags!<CR>
+nmap <Leader>C :Commands<CR>
+nmap <Leader>: :History:<CR>
+nmap <Leader>M :Maps<CR>
 
 "=====================================================
 "" Comfortable Motion Settings
@@ -310,11 +328,11 @@ let g:pymode_lint=0
 
 " virtualenv
 let g:pymode_virtualenv=1
-let g:pymode_virtualenv_path='/home/nick/miniconda/bin/python'
+let g:pymode_virtualenv_path='/home/nick/miniconda/'
 
 " breakpoints
 let g:pymode_breakpoint=1
-let g:pymode_breakpoint_key='<leader>b'
+let g:pymode_breakpoint_bind='<leader>B'
 let g:pymode_breakpoint_cmd='breakpoint()'
 
 " syntax highlight
