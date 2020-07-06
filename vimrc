@@ -30,13 +30,15 @@ Plugin 'MattesGroeger/vim-bookmarks'        " Bookmarks
 Plugin 'thaerkh/vim-indentguides'           " Visual representation of indents
 Plugin 'w0rp/ale'                           " Async Lint Engine
 Plugin 'Valloric/YouCompleteMe'             " Code Completion
+Plugin 'christoomey/vim-tmux-navigator'
 " Plugin 'kien/ctrl.vim'
 
 "-------------------=== Other ===-------------------------------
 Plugin 'tpope/vim-surround'                 " Parentheses, brackets, quotes, XML tags, and more
 Plugin 'flazz/vim-colorschemes'             " Colorschemes
 Plugin 'vimwiki/vimwiki'                    " Personal Wiki
-Plugin 'jreybert/vimagit'                   " Git Operations
+"Plugin 'jreybert/vimagit'                   " Git Operations
+Plugin 'tpope/vim-fugitive'
 Plugin 'kien/rainbow_parentheses.vim'       " Rainbow Parentheses
 Plugin 'ryanoasis/vim-devicons'             " Dev Icons
 Plugin 'mhinz/vim-startify'                 " Vim Start Page
@@ -58,8 +60,8 @@ Plugin 'klen/python-mode'                   " Python mode (docs, refactor, lints
 Plugin 'hynek/vim-python-pep8-indent'
 Plugin 'mitsuhiko/vim-python-combined'
 Plugin 'mitsuhiko/vim-jinja'
-Plugin 'jmcantrell/vim-virtualenv'
-" Plugin 'cjrh/vim-conda'
+"Plugin 'jmcantrell/vim-virtualenv'
+"Plugin 'cjrh/vim-conda'
 
 " All of your Plugins must be added before the following line
 call vundle#end()                           " required
@@ -74,8 +76,9 @@ if filereadable(expand("~/.vimrc_background"))
   source ~/.vimrc_background
 endif
 set encoding=utf-8
-set t_Co=256                                " 256 colors
-set guifont=mononoki\ Nerd\ Font\ 18
+"set t_Co=256                                " 256 colors
+"set guifont=mononoki\ Nerd\ Font\ 18
+"set guifont=DejaVu\ Sans\ Mono\ for\ Powerline
 colorscheme wombat256mod                    " set vim colorscheme
 let g:airline_theme='wombat'                " set airline theme
 syntax enable                               " enable syntax highlighting
@@ -310,7 +313,7 @@ let g:pymode_rope_lookup_project = 0
 let g:airline#extensions#tabline#enabled = 1
 
 " rope
-let g:pymode_rope=1
+"let g:pymode_rope=1
 let g:pymode_rope_completion=0
 let g:pymode_rope_complete_on_dot=0
 let g:pymode_rope_auto_project=0
@@ -328,7 +331,7 @@ let g:pymode_lint=0
 
 " virtualenv
 let g:pymode_virtualenv=1
-let g:pymode_virtualenv_path='/home/nick/miniconda/'
+let g:pymode_virtualenv_path='/home/nick/miniconda'
 
 " breakpoints
 let g:pymode_breakpoint=1
@@ -397,5 +400,15 @@ imap <F5> <Esc>:w<CR>:!clear;python %<CR>
 "vno <right> <Nop>
 "vno <up> <Nop>
 
-
-
+"Requires gitpython package"
+python3 << EOF
+import vim
+import git
+def is_git_repo():
+    try:
+        _ = git.Repo('.', search_parent_directories=True).git_dir
+        return "1"
+    except:
+        return "0"
+vim.command("let g:pymode_rope = " + is_git_repo())
+EOF
