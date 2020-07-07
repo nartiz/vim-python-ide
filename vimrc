@@ -301,11 +301,13 @@ set listchars=tab:›\ ,trail:•,extends:#,nbsp:.
 
 " python executables for different plugins
 let g:pymode_python='python3'
-" let g:pymode_options_max_line_length = 119
-" let g:pymode_options_colorcolumn = 0
+let g:pymode_options_max_line_length = 119
+let g:pymode_options_colorcolumn = 0
 
 nmap <leader>g :YcmCompleter GoTo<CR>
-nmap <leader>d :YcmCompleter GoToDefinition<CR>
+" nmap <leader>d :YcmCompleter GoToDefinition<CR>
+nmap <leader>R :YcmCompleter GoToReferences<CR>
+nmap K :YcmCompleter GetDoc<CR>
 
 let g:ale_emit_conflict_warnings = 0
 let g:airline#extensions#ale#enabled = 1
@@ -324,14 +326,15 @@ let g:pymode_rope_rename_bind = '<leader>r'
 
 " documentation
 let g:pymode_doc=0
-let g:pymode_doc_bind='K'
+"let g:pymode_doc_bind='<F1>'
+let g:pymode_rope_show_doc_bind='<F1>'
 
 " lints
 let g:pymode_lint=0
 
 " virtualenv
 let g:pymode_virtualenv=1
-let g:pymode_virtualenv_path='/home/nick/miniconda'
+let g:pymode_virtualenv_path='/home/nartiz/miniconda3'
 
 " breakpoints
 let g:pymode_breakpoint=1
@@ -362,7 +365,7 @@ let g:pymode_syntax_docstrings=g:pymode_syntax_all
 augroup vimrc_autocmds
     autocmd!
     autocmd FileType python,rst,c,cpp highlight Excess ctermbg=DarkGrey guibg=Black
-    autocmd FileType python,rst,c,cpp match Excess /\%81v.*/
+    autocmd FileType python,rst,c,cpp match Excess /\%121v.*/
     autocmd FileType python,rst,c,cpp set nowrap
     autocmd FileType python,rst,c,cpp set colorcolumn=120
 augroup END
@@ -384,6 +387,7 @@ let g:pymode_rope_lookup_project = 0
 let g:airline#extensions#tabline#enabled = 1
 
 imap <F5> <Esc>:w<CR>:!clear;python %<CR>
+nmap <F5> <Esc>:w<CR>:!clear;python %<CR>
 
 "no <down> <Nop>
 "no <left> <Nop>
