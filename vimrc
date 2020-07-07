@@ -307,7 +307,9 @@ let g:pymode_options_colorcolumn = 0
 nmap <leader>g :YcmCompleter GoTo<CR>
 " nmap <leader>d :YcmCompleter GoToDefinition<CR>
 nmap <leader>R :YcmCompleter GoToReferences<CR>
-nmap K :YcmCompleter GetDoc<CR>
+"nmap K :YcmCompleter GetDoc<CR>
+nmap K <plug>(YCMHover)
+let g:ycm_collect_identifiers_from_tags_files = 1
 
 let g:ale_emit_conflict_warnings = 0
 let g:airline#extensions#ale#enabled = 1
