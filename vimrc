@@ -89,7 +89,7 @@ let g:loaded_python_provider = 1
 set number                                  " show line numbers
 set ruler
 set ttyfast                                 " terminal acceleration
-
+set t_RV=
 set tabstop=4                               " 4 whitespaces for tabs visual presentation
 set shiftwidth=4                            " shift lines by 4 spaces
 set smarttab                                " set tabs for a shifttabs logic
@@ -185,7 +185,6 @@ nnoremap <silent> <C-b> :call comfortable_motion#flick(g:comfortable_motion_impu
 let g:airline#extensions#tabline#enabled=1
 let g:airline#extensions#tabline#formatter='unique_tail'
 let g:airline_powerline_fonts=1
-
 "=====================================================
 "" TagBar settings
 "=====================================================
@@ -241,7 +240,7 @@ let g:webdevicons_enable_airline_tabline = 1
 
 " adding to vim-airline's statusline
 let g:webdevicons_enable_airline_statusline = 1
-
+let g:webdevicons_enable_airline_statusline_fileformat_symbols=1
 " turn on/off file node glyph decorations (not particularly useful)
 let g:WebDevIconsUnicodeDecorateFileNodes = 1
 
@@ -336,7 +335,7 @@ let g:pymode_lint=0
 
 " virtualenv
 let g:pymode_virtualenv=1
-let g:pymode_virtualenv_path='/home/nartiz/miniconda3'
+let g:pymode_virtualenv_path='/home/nick/miniconda'
 
 " breakpoints
 let g:pymode_breakpoint=1
@@ -363,7 +362,21 @@ let g:pymode_syntax_builtin_types=g:pymode_syntax_all
 let g:pymode_syntax_highlight_exceptions=g:pymode_syntax_all
 let g:pymode_syntax_docstrings=g:pymode_syntax_all
 
+" let &t_ut=''
+" General colors
+if has('gui_running') || has('nvim') 
+    hi Normal 		guifg=Black guibg=Black
+else
+    " Set the terminal default background and foreground colors, thereby
+    " improving performance by not needing to set these colors on empty cells.
+    hi Normal guifg=NONE guibg=NONE ctermfg=NONE ctermbg=NONE
+    let &t_ti = &t_ti . "\033]10;#f6f3e8\007\033]11;#242424\007"
+    let &t_te = &t_te . "\033]110\007\033]111\007"
+endif
+" let t:is_transparent = 0
+" hi! Normal ctermbg=Black guibg=Black
 " highlight 'long' lines (>= 80 symbols) in python files
+" set background=dark
 augroup vimrc_autocmds
     autocmd!
     autocmd FileType python,rst,c,cpp highlight Excess ctermbg=DarkGrey guibg=Black
