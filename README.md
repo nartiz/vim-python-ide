@@ -29,11 +29,11 @@ Table of contents
 A script shell will get a copy of the vimrc up and running on your local machine for testing purposes. The script will install the vimrc and compile the YouCompleteMe plugin:
 ### Bash 
 ```
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/jarolrod/vim-python-ide/master/setup.sh)"
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/nartiz/vim-python-ide/master/setup.sh)"
 ```
 ### Fish
 ```
-curl -fsSL https://raw.githubusercontent.com/jarolrod/vim-python-ide/master/setup.sh | sh       
+curl -fsSL https://raw.githubusercontent.com/nartiz/vim-python-ide/master/setup.sh | sh       
 ```
 ### YouCompleteMe
 YouCompleteMe must be compiled for it to work. The install script handles the compiling, but if something goes wrong then do the following:
