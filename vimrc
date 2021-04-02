@@ -46,15 +46,15 @@ Plugin 'ludovicchabant/vim-gutentags'
 Plugin 'vim-scripts/ZoomWin'
 
 "-------------------=== Snippets support ===--------------------
-"Plugin 'garbas/vim-snipmate'                " Snippets manager
-"Plugin 'MarcWeber/vim-addon-mw-utils'       " dependencies #1
-"Plugin 'tomtom/tlib_vim'                    " dependencies #2
-"Plugin 'honza/vim-snippets'                 " snippets repo
+Plugin 'garbas/vim-snipmate'                " Snippets manager
+Plugin 'MarcWeber/vim-addon-mw-utils'       " dependencies #1
+Plugin 'tomtom/tlib_vim'                    " dependencies #2
+Plugin 'honza/vim-snippets'                 " snippets repo
 
 "-------------------=== Languages support ===-------------------
 Plugin 'scrooloose/nerdcommenter'           " Easy code documentation
 Plugin 'mitsuhiko/vim-sparkup'              " Sparkup(XML/jinja/htlm-django/etc.) support
-
+Plugin 'prabirshrestha/vim-lsp'             "required for bash support
 "-------------------=== Python  ===-----------------------------
 Plugin 'klen/python-mode'                   " Python mode (docs, refactor, lints...)
 Plugin 'hynek/vim-python-pep8-indent'
@@ -281,6 +281,7 @@ let g:DevIconsEnableFolderExtensionPatternMatching = 0
 "" SnipMate settings
 "=====================================================
 let g:snippets_dir='~/.vim/vim-snippets/snippets'
+let g:snipMate = { 'snippet_version' : 1 }
 
 "=====================================================
 "" Rainbow Parentheses Autoload 
@@ -294,6 +295,17 @@ au Syntax * RainbowParenthesesLoadBraces
 "" Indent Guides Settings 
 "=====================================================
 set listchars=tab:›\ ,trail:•,extends:#,nbsp:.
+
+"=====================================================
+"" Bash support
+"=====================================================
+if executable('bash-language-server')
+      au User lsp_setup call lsp#register_server({
+              \ 'name': 'bash-language-server',
+              \ 'cmd': {server_info->[&shell, &shellcmdflag, 'bash-language-server start']},
+              \ 'allowlist': ['sh'],
+              \ })
+endif
 "=====================================================
 "" Python settings
 "=====================================================
