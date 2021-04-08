@@ -72,7 +72,7 @@ filetype plugin indent on
 "=====================================================
 "" General settings
 "=====================================================
-# set virtualenv to 1 and uncomment shell for better environment support but slower load
+"set virtualenv to 1 and uncomment shell for better environment support but slower load
 let g:pymode_virtualenv=0
 "set shell=/bin/bash
 
