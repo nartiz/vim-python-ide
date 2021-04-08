@@ -72,6 +72,10 @@ filetype plugin indent on
 "=====================================================
 "" General settings
 "=====================================================
+# set virtualenv to 1 and uncomment shell for better environment support but slower load
+let g:pymode_virtualenv=0
+"set shell=/bin/bash
+
 if filereadable(expand("~/.vimrc_background"))
   source ~/.vimrc_background
 endif
@@ -85,7 +89,7 @@ syntax enable                               " enable syntax highlighting
 
 set pyxversion=0
 let g:loaded_python_provider = 1
-" set shell=/bin/bash
+
 set number                                  " show line numbers
 set ruler
 set ttyfast                                 " terminal acceleration
@@ -346,8 +350,7 @@ let g:pymode_rope_show_doc_bind='<F1>'
 let g:pymode_lint=0
 
 " virtualenv
-let g:pymode_virtualenv=1
-let g:pymode_virtualenv_path='/home/nick/miniconda'
+let g:pymode_virtualenv_path=$CONDA_PREFIX
 
 " breakpoints
 let g:pymode_breakpoint=1
