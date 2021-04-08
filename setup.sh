@@ -8,7 +8,7 @@ wrapper() {
   NORMAL="\033[0m"
 
   # Links
-  REPO_HTTPS="https://github.com/jarolrod/vim-python-ide.git"
+  REPO_HTTPS="https://github.com/nartiz/vim-python-ide.git"
   VUNDLE_HTTPS="https://github.com/VundleVim/Vundle.vim.git"
   PYTHON_INSTALL="https://realpython.com/installing-python/"
   GIT_INSTALL="https://git-scm.com/book/en/v2/Getting-Started-Installing-Git"
