@@ -43,6 +43,7 @@ Plugin 'kien/rainbow_parentheses.vim'       " Rainbow Parentheses
 Plugin 'ryanoasis/vim-devicons'             " Dev Icons
 Plugin 'mhinz/vim-startify'                 " Vim Start Page
 Plugin 'ludovicchabant/vim-gutentags'
+Plugin 'skywind3000/gutentags_plus'
 Plugin 'vim-scripts/ZoomWin'
 
 "-------------------=== Snippets support ===--------------------
@@ -60,6 +61,7 @@ Plugin 'klen/python-mode'                   " Python mode (docs, refactor, lints
 Plugin 'hynek/vim-python-pep8-indent'
 Plugin 'mitsuhiko/vim-python-combined'
 Plugin 'mitsuhiko/vim-jinja'
+Plugin 'python-rope/ropevim'
 "Plugin 'jmcantrell/vim-virtualenv'
 "Plugin 'cjrh/vim-conda'
 
@@ -133,6 +135,27 @@ nmap <silent> <leader>q :SyntasticCheck # <CR> :bp <BAR> bd #<CR>
 "=====================================================
 "" YouCompleteMe Settings
 "=====================================================
+
+"=====================================================
+"" GutenTags settings·
+"=====================================================
+" enable gtags module
+let g:gutentags_modules = ['ctags', 'gtags_cscope']
+" config project root markers.
+let g:gutentags_project_root = ['.root']
+" generate datebases in my cache directory, prevent gtags files polluting my project
+let g:gutentags_cache_dir = expand('~/.cache/tags')
+" change focus to quickfix window after search (optional).
+let g:gutentags_plus_switch = 1
+
+"=====================================================
+"" RopeVim·
+"=====================================================
+let g:ropevim_vim_completion = 0
+let g:ropevim_enable_shortcuts = 1
+:noremap <F1> :call RopeShowDoc()
+:noremap <leader>r :call RopeRename()
+:noremap <leader>f :call RopeFindOccurrences()
 
 "=====================================================
 "" Ale Settings (Linting)
@@ -332,19 +355,19 @@ let g:pymode_rope_lookup_project = 0
 let g:airline#extensions#tabline#enabled = 1
 
 " rope
-"let g:pymode_rope=1
+let g:pymode_rope=0
 let g:pymode_rope_completion=0
 let g:pymode_rope_complete_on_dot=0
 let g:pymode_rope_auto_project=0
 let g:pymode_rope_enable_autoimport=0
 let g:pymode_rope_autoimport_generate=0
 let g:pymode_rope_guess_project=0
-let g:pymode_rope_rename_bind = '<leader>r'
+"let g:pymode_rope_rename_bind = '<leader>r'
 
 " documentation
 let g:pymode_doc=0
 "let g:pymode_doc_bind='<F1>'
-let g:pymode_rope_show_doc_bind='<F1>'
+"let g:pymode_rope_show_doc_bind='<F1>'
 
 " lints
 let g:pymode_lint=0
@@ -435,14 +458,14 @@ nmap <F5> <Esc>:w<CR>:!clear;python %<CR>
 "vno <up> <Nop>
 
 "Requires gitpython package"
-python3 << EOF
-import vim
-import git
-def is_git_repo():
-    try:
-        _ = git.Repo('.', search_parent_directories=True).git_dir
-        return "1"
-    except:
-        return "0"
-vim.command("let g:pymode_rope = " + is_git_repo())
-EOF
+" python3 << EOF
+"   import vim
+"   import git
+"   def is_git_repo():
+"     try:
+"       _ = git.Repo('.', search_parent_directories=True).git_dir
+"       return "1"
+"     except:
+"       return "0"
+"   vim.command("let g:pymode_rope = " + is_git_repo())
+" EOF
